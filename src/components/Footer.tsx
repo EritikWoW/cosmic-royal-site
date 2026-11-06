@@ -2,37 +2,50 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SITE } from "@/lib/site";
+import { NAV } from "./Header";
+import Icon from "./Icon";
 
 export default function Footer() {
   const path = usePathname();
   if (path.startsWith("/admin")) return null;
+  const socials = [
+    { name: "telegram", href: SITE.telegramUrl || "/support", label: "Telegram" },
+    { name: "instagram", href: SITE.instagramUrl, label: "Instagram" },
+    { name: "youtube", href: SITE.youtubeUrl, label: "YouTube" },
+  ].filter((s) => s.href);
   return (
     <footer className="site-footer">
-      <div className="container footer-grid">
-        <div className="footer-brand">
-          <img src="/assets/svg/brand/cosmic-star.svg" alt="" width={44} height={44} />
-          <div>
-            <b className="display" style={{ fontSize: 26 }}>{SITE.mentorName}</b>
-            <p className="muted">{SITE.tagline}. Сайт не є офіційним сайтом платформи GaliantPro.</p>
+      <div className="container">
+        <div className="footer-bar">
+          <Link href="/" className="footer-brand" aria-label="На головну">
+            <img src="/assets/svg/brand/cosmic-star.svg" alt="" width={46} height={46} />
+            <span>
+              <b>{SITE.mentorName}</b>
+              <small>{SITE.tagline}</small>
+            </span>
+          </Link>
+          <nav className="footer-nav" aria-label="Меню у футері">
+            {NAV.map((n) => <Link key={n.href} href={n.href}>{n.label}</Link>)}
+          </nav>
+          <div className="footer-socials">
+            {socials.map((s) => {
+              const ext = s.href.startsWith("http");
+              return (
+                <a key={s.name} href={s.href} aria-label={s.label} {...(ext ? { target: "_blank", rel: "noopener" } : {})}>
+                  <Icon name={s.name} size={22} />
+                </a>
+              );
+            })}
           </div>
         </div>
-        <nav className="footer-links" aria-label="Меню у футері">
-          <Link href="/courses">Курси</Link>
-          <Link href="/courses?d=levels">Рівні платформи</Link>
-          <Link href="/support">Зв&apos;язок з наставницею</Link>
-          <a href={SITE.trialUrl} target="_blank" rel="noopener">Пробні уроки</a>
-        </nav>
-        <nav className="footer-links" aria-label="Документи">
-          <Link href="/offer">Публічна оферта</Link>
-          <Link href="/privacy">Політика конфіденційності</Link>
-          <Link href="/account">Особистий кабінет</Link>
-          {SITE.telegramUrl && <a href={SITE.telegramUrl} target="_blank" rel="noopener">Telegram</a>}
-          {SITE.instagramUrl && <a href={SITE.instagramUrl} target="_blank" rel="noopener">Instagram</a>}
-        </nav>
-      </div>
-      <div className="container footer-bottom muted">
-        <span>© {new Date().getFullYear()} {SITE.mentorName}. Оплата через WayForPay.</span>
-        <span>Результати навчання залежать від особистих зусиль; ми не гарантуємо рівень доходу.</span>
+        <div className="footer-legal">
+          <span>© {new Date().getFullYear()} {SITE.mentorName}. Сайт не є офіційним сайтом GaliantPro. Результат навчання залежить від особистих зусиль.</span>
+          <span className="footer-docs">
+            <Link href="/offer">Оферта</Link>
+            <Link href="/privacy">Конфіденційність</Link>
+            <a href={SITE.trialUrl} target="_blank" rel="noopener">Пробні уроки</a>
+          </span>
+        </div>
       </div>
     </footer>
   );

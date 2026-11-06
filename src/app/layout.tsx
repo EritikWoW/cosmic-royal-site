@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 import "./ui.css";
 import "./home.css";
+import "./home-v3.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Starfield from "@/components/Starfield";

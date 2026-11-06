@@ -120,7 +120,7 @@ export default function ChatWidget({ userName }: { userName?: string }) {
       {open && (
         <div className="chat-panel" role="dialog" aria-label="Чат">
           <div className="chat-head">
-            <img src={tab === "ai" ? "/assets/svg/ui/ai-assistant-mascot.svg" : "/assets/svg/ui/moon-badge.svg"} alt="" />
+            <img src={tab === "ai" ? "/assets/v3/mascot.webp" : "/assets/svg/ui/moon-badge.svg"} alt="" />
             <div>
               <b>{tab === "ai" ? "AI-помічник" : `Наставниця ${SITE.mentorName}`}</b>
               <small>● {tab === "ai" ? "онлайн 24/7" : "відповідає в робочий час"}</small>
@@ -168,7 +168,7 @@ export default function ChatWidget({ userName }: { userName?: string }) {
         </div>
       )}
       <button className="chat-fab" onClick={() => setOpen(!open)} aria-label={open ? "Закрити чат" : "Відкрити чат з AI-помічником"} aria-expanded={open}>
-        <img src="/assets/svg/ui/ai-assistant-mascot.svg" alt="" />
+        <img src="/assets/v3/mascot.webp" alt="" />
       </button>
     </>
   );

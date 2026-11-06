@@ -5,12 +5,13 @@ import { useEffect, useState } from "react";
 import { useCart } from "./Cart";
 import { SITE } from "@/lib/site";
 
-const NAV = [
+export const NAV = [
   { href: "/", label: "Головна" },
   { href: "/courses?d=levels", label: "Професії" },
   { href: "/courses", label: "Курси" },
   { href: "/support", label: "Наставництво" },
-  { href: "/#mentor", label: "Про мене" },
+  { href: "/about", label: "Про мене" },
+  { href: "/#reviews", label: "Відгуки" },
 ];
 
 export default function Header({ user }: { user: { name: string; admin: boolean } | null }) {
