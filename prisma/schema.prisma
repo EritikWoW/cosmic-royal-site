@@ -1,0 +1,145 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  DECLINED
+  REFUNDED
+  EXPIRED
+}
+
+enum MessageAuthor {
+  USER
+  ADMIN
+}
+
+model User {
+  id           String          @id @default(cuid())
+  email        String          @unique
+  passwordHash String
+  name         String
+  phone        String?
+  telegram     String?
+  role         Role            @default(USER)
+  createdAt    DateTime        @default(now())
+  orders       Order[]
+  threads      SupportThread[]
+}
+
+model Course {
+  id          String      @id @default(cuid())
+  slug        String      @unique
+  title       String
+  /// Direction key, see src/lib/directions.ts
+  direction   String
+  /// "level" for platform access levels, "course" for single courses
+  kind        String      @default("course")
+  short       String
+  description String
+  /// One program item per line
+  program     String      @default("")
+  format      String      @default("Відеоуроки та записи ефірів у закритому Telegram-каналі")
+  lessons     Int?
+  /// Price in UAH (whole hryvnias)
+  price       Int
+  oldPrice    Int?
+  /// Access instructions shown to the buyer after payment (e.g. Telegram channel link)
+  accessInfo  String      @default("")
+  published   Boolean     @default(true)
+  featured    Boolean     @default(false)
+  sortOrder   Int         @default(100)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  orderItems  OrderItem[]
+}
+
+model Order {
+  id          String      @id @default(cuid())
+  /// orderReference sent to WayForPay
+  reference   String      @unique
+  userId      String?
+  user        User?       @relation(fields: [userId], references: [id])
+  email       String
+  name        String
+  phone       String
+  amount      Int
+  currency    String      @default("UAH")
+  status      OrderStatus @default(PENDING)
+  /// Admin marked that access to the courses was granted
+  fulfilled   Boolean     @default(false)
+  wfpStatus   String?
+  wfpPayload  Json?
+  createdAt   DateTime    @default(now())
+  paidAt      DateTime?
+  items       OrderItem[]
+}
+
+model OrderItem {
+  id       String @id @default(cuid())
+  orderId  String
+  order    Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  courseId String
+  course   Course @relation(fields: [courseId], references: [id])
+  title    String
+  price    Int
+}
+
+model SupportThread {
+  id        String           @id @default(cuid())
+  /// Secret token kept in the visitor's cookie, lets guests chat without an account
+  token     String           @unique
+  userId    String?
+  user      User?            @relation(fields: [userId], references: [id])
+  name      String
+  contact   String
+  open      Boolean          @default(true)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+  messages  SupportMessage[]
+}
+
+model SupportMessage {
+  id          String        @id @default(cuid())
+  threadId    String
+  thread      SupportThread @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  author      MessageAuthor
+  text        String
+  /// Telegram message id of the copy sent to admins, used to route replies
+  tgMessageId Int?
+  createdAt   DateTime      @default(now())
+
+  @@index([tgMessageId])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actor     String
+  action    String
+  data      Json?
+  createdAt DateTime @default(now())
+}
+
+/// Real student reviews, added by the admin. The section stays hidden while empty.
+model Review {
+  id        String   @id @default(cuid())
+  name      String
+  text      String
+  rating    Int      @default(5)
+  /// Optional photo URL (with the student's consent)
+  photo     String?
+  published Boolean  @default(true)
+  sortOrder Int      @default(100)
+  createdAt DateTime @default(now())
+}
