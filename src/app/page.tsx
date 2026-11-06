@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { db } from "@/lib/db";
+import { SITE } from "@/lib/site";
 import OpenAiButton from "@/components/OpenAiButton";
 import Ornament from "@/components/Ornament";
 import Reviews from "@/components/Reviews";
@@ -45,8 +46,8 @@ export default async function Home() {
           <div className="layer l-crystal"><img src="/assets/png/decor/amethyst-cluster.png" alt="" className="float" /></div>
           <span className="spark s1" /><span className="spark s2" /><span className="spark s3" /><span className="spark s4" />
         </div>
-        <img src="/assets/v3/cloud-band.webp" alt="" aria-hidden className="hero-clouds" />
 
+        <img src="/assets/v3/cloud-band.webp" alt="" aria-hidden className="hero-clouds" />
         <div className="container hero-content">
           <span className="eyebrow hero-in" style={{ ["--d" as string]: ".1s" }}>
             <img src="/assets/svg/system/graduation.svg" alt="" width={16} height={16} /> Онлайн-навчання та менторство
@@ -65,6 +66,7 @@ export default async function Home() {
             <Link href="/courses?d=levels" className="btn btn-primary btn-lg">Підібрати професію <Icon name="arrow" size={18} /></Link>
             <Link href="/courses" className="btn btn-secondary btn-lg">Переглянути курси <Icon name="play" size={16} /></Link>
           </div>
+          <a href={SITE.trialUrl} target="_blank" rel="noopener" className="trial-link hero-in" style={{ ["--d" as string]: ".65s" }}>✦ Записатися на безкоштовні пробні уроки</a>
           <ul className="hero-features hero-in" style={{ ["--d" as string]: ".75s" }}>
             {HERO_FEATURES.map((f) => (
               <li key={f.title}>
@@ -78,7 +80,7 @@ export default async function Home() {
 
       {/* DIRECTIONS: light lavender glass sheet */}
       <section className="dir-section">
-        <div className="container">
+        <div className="container dir-inner">
           <div className="dir-sheet">
             <div className="dir-main">
               <div className="dir-head reveal">

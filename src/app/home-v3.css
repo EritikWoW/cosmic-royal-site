@@ -55,13 +55,13 @@ p { letter-spacing: .005em; }
 .hero::before { content: ""; position: absolute; inset: 0; z-index: -3; background: url(/assets/backgrounds/cosmic-nebula-subtle-1600x900.webp) center/cover; opacity: .5; mix-blend-mode: screen; }
 .hero-stage { position: absolute; z-index: -1; top: 0; bottom: 0; right: max(-40px, calc((100vw - 1440px) / 2)); width: min(60%, 820px); pointer-events: none; }
 .layer { position: absolute; transition: transform 0s; will-change: transform; }
-.l-ring { left: 52%; top: 78px; width: min(86%, 600px); transform: translate(calc(-50% + var(--px) * -10px), calc(var(--py) * -8px)); }
+.l-ring { left: 54%; top: 6px; width: min(96%, 680px); transform: translate(calc(-50% + var(--px) * -10px), calc(var(--py) * -8px)); }
 .l-ring .ring-img { width: 100%; animation: ring-glow 6s ease-in-out infinite; }
 @keyframes ring-glow { 0%,100% { filter: drop-shadow(0 0 18px rgba(255, 200, 150, .45)) brightness(1); } 50% { filter: drop-shadow(0 0 40px rgba(255, 210, 160, .75)) brightness(1.12); } }
-.l-portrait { left: 52%; bottom: 46px; height: min(84%, 560px); aspect-ratio: 1086 / 1448; transform: translate(calc(-50% + var(--px) * 6px), calc(var(--py) * 4px)); }
+.l-portrait { left: 53%; bottom: 40px; height: min(86%, 560px); aspect-ratio: 1086 / 1448; transform: translate(calc(-50% + var(--px) * 6px), calc(var(--py) * 4px)); }
 .l-portrait img { width: 100%; height: 100%; object-fit: contain; object-position: bottom; animation: portrait-in 1.6s var(--ease-soft) both; filter: drop-shadow(0 20px 50px rgba(40, 10, 60, .5)); }
 @keyframes portrait-in { from { opacity: 0; transform: translateY(30px) scale(.97); } to { opacity: 1; transform: none; } }
-.l-arch { left: 52%; top: 64px; width: min(108%, 780px); transform: translate(calc(-50% + var(--px) * -18px), calc(var(--py) * -12px)); }
+.l-arch { left: 54%; top: 58px; width: min(112%, 820px); transform: translate(calc(-50% + var(--px) * -18px), calc(var(--py) * -12px)); }
 .l-arch .arch-img { width: 100%; animation: arch-sway 9s ease-in-out infinite; transform-origin: 50% 0; }
 @keyframes arch-sway { 0%,100% { transform: rotate(-.6deg); } 50% { transform: rotate(.6deg) translateY(4px); } }
 .l-crystal { right: 2%; bottom: 120px; width: 150px; transform: translate(calc(var(--px) * -24px), calc(var(--py) * -16px)); }
@@ -225,3 +225,80 @@ main:not(:has(.home)) + .site-footer { margin-top: 70px; }
 .ornament { display: flex; justify-content: center; margin: 0 auto 10px; }
 .ornament svg { width: min(420px, 86%); height: auto; filter: drop-shadow(0 0 8px rgba(255, 216, 107, .55)); }
 .ornament-star { transform-origin: 260px 30px; animation: star-pulse 3.5s ease-in-out infinite; }
+
+/* ===== v3.1: closer to the mockup ===== */
+/* Full-width lavender band with a cloudy haze rising out of the hero */
+.dir-section { margin-top: -96px; padding: 70px 0 120px; z-index: 1;
+  background:
+    radial-gradient(30% 60px at 12% 0, rgba(255,255,255,.55), transparent 80%),
+    radial-gradient(34% 70px at 50% 4px, rgba(255,255,255,.5), transparent 80%),
+    radial-gradient(30% 60px at 88% 0, rgba(255,255,255,.55), transparent 80%),
+    linear-gradient(180deg, rgba(240, 214, 248, 0) 0, #efd6f6 64px, #f4e2f8 40%, #ead0f2 100%); }
+.dir-sheet { background: none; border: 0; box-shadow: none; backdrop-filter: none; padding: 0; border-radius: 0; }
+.hero-clouds { z-index: 2; bottom: -10px; }
+.hero-content { z-index: 3; }
+.why-section { margin-top: -96px; z-index: 2; }
+.trial-link { justify-self: start; color: var(--lime); font-weight: 600; font-size: 14.5px; border-bottom: 1px dashed rgba(210, 250, 90, .5); transition: color .3s, border-color .3s; }
+.trial-link:hover { color: #fff; border-color: #fff; }
+.hero-features { margin-top: 4px; }
+
+/* Golden page frame like the mockup (desktop only) */
+.page-frame { display: none; }
+@media (min-width: 1100px) {
+  .page-frame { display: block; position: fixed; inset: 10px; z-index: 55; pointer-events: none; border-radius: 26px;
+    border: 1px solid rgba(255, 216, 107, .38);
+    box-shadow: 0 0 0 30px #1a0a28, inset 0 0 0 1px rgba(255,255,255,.04), inset 0 0 40px rgba(255, 216, 107, .08), 0 0 26px rgba(255, 216, 107, .18); }
+  .site-header { top: 10px; left: 10px; right: 10px; border-radius: 26px 26px 0 0; }
+}
+
+/* Professions dropdown + always-visible cart counter */
+.nav-drop { position: relative; }
+.nav-drop-btn { display: inline-flex !important; align-items: center; gap: 6px; }
+.nav-drop-btn svg { transition: transform .35s var(--ease-soft); }
+.nav-drop:hover .nav-drop-btn svg, .nav-drop:focus-within .nav-drop-btn svg { transform: rotate(180deg); }
+.nav-menu { position: absolute; left: 0; top: calc(100% + 10px); min-width: 250px; display: grid; gap: 2px; padding: 10px; border-radius: 18px;
+  background: rgba(40, 16, 58, .94); border: 1px solid rgba(255, 216, 107, .25); backdrop-filter: blur(18px); box-shadow: 0 24px 60px rgba(10, 2, 20, .5);
+  opacity: 0; transform: translateY(-6px); pointer-events: none; transition: opacity .35s var(--ease-soft), transform .35s var(--ease-soft); }
+.nav-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -12px; height: 12px; }
+.nav-drop:hover .nav-menu, .nav-drop:focus-within .nav-menu { opacity: 1; transform: none; pointer-events: auto; }
+.nav-menu a { padding: 9px 12px !important; border-radius: 12px !important; font-size: 14px !important; }
+.nav-menu a.nav-menu-trial { color: var(--lime); font-weight: 600; }
+.icon-btn .count { top: 0; right: -2px; }
+@media (max-width: 1100px) {
+  .nav-menu { position: static; opacity: 1; transform: none; pointer-events: auto; background: none; border: 0; box-shadow: none; padding: 0 0 0 14px; min-width: 0; }
+  .nav-drop-btn svg { display: none; }
+}
+@media (max-width: 899px) {
+  .dir-section { margin-top: -50px; padding: 50px 0 90px; }
+  .why-section { margin-top: -60px; }
+  .hero-clouds { z-index: 1; }
+}
+
+/* clouds now live at the top of the lavender band, so they cover the hero seam */
+.hero-clouds { position: absolute; z-index: 0; top: auto; bottom: calc(100% - 120px); }
+.dir-inner { position: relative; z-index: 1; }
+.dir-section { padding-top: 46px; }
+.hero { min-height: clamp(540px, calc(100svh - 270px), 660px); padding-bottom: 96px; }
+@media (max-width: 899px) { .hero-clouds { top: auto; bottom: calc(100% - 70px); width: 700px; } .hero { padding-bottom: 60px; } }
+.dir-section { --px: 0; }
+.hero-clouds { bottom: calc(100% - 36px); }
+.dir-section { padding-top: 60px; overflow-x: clip; }
+.hero { overflow-x: clip; }
+@media (max-width: 899px) { .hero-clouds { bottom: calc(100% - 30px); } }
+/* clouds back in the hero, spilling down over the lavender band */
+.hero { overflow: visible; overflow-x: clip; z-index: 2; padding-bottom: 130px; }
+.hero-clouds { z-index: 2; top: auto; bottom: -150px; }
+.hero-content { z-index: 3; }
+.dir-section { z-index: 1; padding-top: 90px; margin-top: -40px; }
+@media (max-width: 899px) { .hero { padding-bottom: 70px; } .hero-clouds { bottom: auto; top: 250px; } .dir-section { padding-top: 60px; margin-top: -20px; } }
+/* band cropped to its cloud part and faded into the lavender */
+.hero-clouds { left: 0; width: 100%; height: 230px; object-fit: cover; object-position: 50% 100%; transform: translateX(calc(var(--px) * 8px)) scale(1.06); bottom: -70px;
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%); mask-image: linear-gradient(180deg, #000 55%, transparent 100%); }
+.hero { padding-bottom: 110px; }
+.dir-section { padding-top: 70px; margin-top: 0; }
+@media (max-width: 899px) { .hero-clouds { top: 330px; bottom: auto; height: 160px; } .dir-section { padding-top: 40px; } }
+.hero { padding-bottom: 96px; }
+.dir-section { padding-top: 26px; }
+.dir-section { padding-top: 50px; }
+.hero::before { -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent); mask-image: linear-gradient(180deg, #000 70%, transparent); }
+@media (max-width: 899px) { .dir-section { padding-top: 40px; margin-top: -60px; background: linear-gradient(180deg, rgba(240,214,248,0) 0, #efd6f6 90px, #f4e2f8 40%, #ead0f2 100%); } .hero { padding-bottom: 90px; } }
