@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useCart } from "./Cart";
 import { SITE } from "@/lib/site";
 import { DIRECTIONS } from "@/lib/directions";
+import LogoStar from "./LogoStar";
 
 export const NAV = [
   { href: "/", label: "Головна" },
@@ -34,7 +35,7 @@ export default function Header({ user }: { user: { name: string; admin: boolean 
     <header className={`site-header ${scrolled ? "scrolled" : ""}`}>
       <div className="container header-row">
         <Link href="/" className="logo" aria-label="На головну">
-          <img src="/assets/svg/brand/cosmic-star.svg" alt="" className="logo-star" />
+          <LogoStar size={46} className="logo-star" />
           <span>
             <b>{SITE.mentorName}</b>
             <small>Екосистема навчання</small>

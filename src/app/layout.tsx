@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Cormorant_Garamond, Manrope, Noto_Serif_Display } from "next/font/google";
 import "./globals.css";
 import "./ui.css";
 import "./home.css";
@@ -14,6 +14,7 @@ import { getUser } from "@/lib/auth";
 import { SITE } from "@/lib/site";
 
 const cormorant = Cormorant_Garamond({ subsets: ["latin", "cyrillic"], weight: ["500", "600", "700"], variable: "--font-cormorant", display: "swap" });
+const serifDisplay = Noto_Serif_Display({ subsets: ["latin", "cyrillic"], weight: ["500", "600"], variable: "--font-serif-display", display: "swap" });
 const manrope = Manrope({ subsets: ["latin", "cyrillic"], weight: ["400", "500", "600", "700", "800"], variable: "--font-manrope", display: "swap" });
 
 export const metadata: Metadata = {
@@ -28,7 +29,7 @@ export const viewport: Viewport = { themeColor: "#0b0614" };
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const user = await getUser();
   return (
-    <html lang="uk" className={`${cormorant.variable} ${manrope.variable}`}>
+    <html lang="uk" className={`${cormorant.variable} ${manrope.variable} ${serifDisplay.variable}`}>
       <body>
         <CartProvider>
           <Starfield />

@@ -13,7 +13,8 @@ export default function Ornament() {
         <path d="M226 17 A13 13 0 1 0 226 43 A10 13 0 1 1 226 17 Z" fill="#ffd86b" />
         <path d="M294 17 A13 13 0 1 1 294 43 A10 13 0 1 0 294 17 Z" fill="#ffd86b" />
         <path d="M260 2 L265 25 L288 30 L265 35 L260 58 L255 35 L232 30 L255 25 Z" fill="url(#ostar)" className="ornament-star" />
-        <circle cx="260" cy="30" r="3" fill="#a370ff" />
+        <path d="M260 12 L262.5 27.5 L278 30 L262.5 32.5 L260 48 L257.5 32.5 L242 30 L257.5 27.5 Z" transform="rotate(45 260 30)" fill="#ffe7a8" opacity=".9" />
+        <circle cx="260" cy="30" r="3" fill="#fff" />
       </svg>
     </div>
   );

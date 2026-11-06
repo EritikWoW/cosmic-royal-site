@@ -40,14 +40,15 @@ export default async function Home() {
       {/* HERO: nebula + moon ring + portrait cutout + gold arch + cloud band */}
       <section className="hero" data-parallax>
         <div className="hero-stage" aria-hidden>
-          <div className="layer l-ring"><img src="/assets/v3/moon-ring.webp" alt="" className="ring-img" /></div>
+          <div className="layer l-ring"><img src="/assets/v3/moon-disc.webp" alt="" className="moon-img" /><img src="/assets/v3/moon-ring.webp" alt="" className="ring-img" /></div>
           <div className="layer l-portrait"><img src="/assets/v3/portrait-cutout.webp" alt="" fetchPriority="high" /></div>
-          <div className="layer l-arch"><img src="/assets/v3/gold-arch.webp" alt="" className="arch-img" /></div>
-          <div className="layer l-crystal"><img src="/assets/png/decor/amethyst-cluster.png" alt="" className="float" /></div>
+          <div className="layer l-strand left"><img src="/assets/v3/strand-left.webp" alt="" /></div>
+          <div className="layer l-strand right"><img src="/assets/v3/strand-right.webp" alt="" /></div>
           <span className="spark s1" /><span className="spark s2" /><span className="spark s3" /><span className="spark s4" />
         </div>
 
-        <img src="/assets/v3/cloud-band.webp" alt="" aria-hidden className="hero-clouds" />
+        <div className="hero-mist" aria-hidden />
+        <img src="/assets/v3/cloud-strip.webp" alt="" aria-hidden className="hero-clouds" />
         <div className="container hero-content">
           <span className="eyebrow hero-in" style={{ ["--d" as string]: ".1s" }}>
             <img src="/assets/svg/system/graduation.svg" alt="" width={16} height={16} /> Онлайн-навчання та менторство
@@ -112,7 +113,8 @@ export default async function Home() {
 
       {/* WHY: dark dome with gold arc */}
       <section className="why-section">
-        <img src="/assets/v3/cloud-band.webp" alt="" aria-hidden className="why-clouds" />
+        <span className="why-cloud l" aria-hidden /><span className="why-cloud r" aria-hidden />
+        <img src="/assets/png/decor/amethyst-single.png" alt="" aria-hidden className="why-crystal float" />
         <div className="container">
           <Ornament />
           <h2 className="center reveal">Чому обирають навчання тут?</h2>

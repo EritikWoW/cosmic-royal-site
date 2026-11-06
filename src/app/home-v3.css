@@ -367,3 +367,97 @@ main:has(.home) + .site-footer { margin-top: -40px; }
   mask-image: linear-gradient(90deg, #000 0 14%, transparent 26% 74%, #000 86% 100%), linear-gradient(180deg, #000 60%, transparent 100%);
   mask-composite: intersect; }
 .footer-bar { border-top: 1.5px solid rgba(255, 216, 107, .9); box-shadow: 0 -3px 18px rgba(255, 216, 107, .45), 0 -40px 80px rgba(160, 90, 220, .15); }
+
+/* ===== v3.3: Roman's annotated fixes ===== */
+:root { --font-display: var(--font-serif-display), "Noto Serif Display", Georgia, serif; }
+h1, h2, h3, .display { font-family: var(--font-display); }
+.dir-top h3, .ai-card h3, .course-body h3 { font-family: var(--font-ui); }
+
+/* Logo: bright sparkle */
+.logo-sparkle { filter: drop-shadow(0 0 10px rgba(255, 228, 160, .85)) drop-shadow(0 0 22px rgba(255, 210, 120, .45)); animation: star-pulse 4s ease-in-out infinite; }
+.logo .logo-star { width: 46px; height: 46px; filter: drop-shadow(0 0 10px rgba(255, 228, 160, .85)); }
+.logo b { font-size: 23px; }
+
+/* Hero title like the mockup: serif display, near-white lilac */
+.hero-title { font-weight: 500; letter-spacing: -.015em; line-height: 1.06; font-size: clamp(2.5rem, 4.6vw, 4.3rem);
+  background: linear-gradient(180deg, #fff6ff 0%, #f6dcf6 55%, #e7c0ef 100%); -webkit-background-clip: text; background-clip: text; }
+
+/* Moon: filled disc inside the gold ring, no arch over the head */
+.l-ring::before { content: none; }
+.l-ring { top: 18px; width: min(96%, 660px); }
+.l-ring .moon-img { position: absolute; left: 50%; top: 50%; width: 63%; transform: translate(-50%, -50%); border-radius: 50%; opacity: .95;
+  box-shadow: 0 0 50px 10px rgba(255, 200, 170, .35), 0 0 120px 40px rgba(220, 140, 220, .22); animation: moon-turn 120s linear infinite; }
+@keyframes moon-turn { to { transform: translate(-50%, -50%) rotate(360deg); } }
+.l-ring .ring-img { position: relative; }
+.l-arch, .l-crystal { display: none; }
+.l-strand { top: 30px; width: 170px; }
+.l-strand img { width: 100%; animation: arch-sway 9s ease-in-out infinite; transform-origin: 50% 0; }
+.l-strand.left { left: -4%; transform: translate(calc(var(--px) * -14px), calc(var(--py) * -8px)); }
+.l-strand.right { right: -2%; width: 200px; transform: translate(calc(var(--px) * -18px), calc(var(--py) * -10px)); }
+.l-strand.right img { animation-delay: -3s; }
+
+/* Brighter, warmer sky + clouds on the left and a light lavender floor */
+.hero { background:
+    radial-gradient(38% 55% at 72% 34%, rgba(255, 180, 230, .32), transparent 72%),
+    radial-gradient(30% 40% at 0% 72%, rgba(170, 100, 220, .45), transparent 75%),
+    radial-gradient(60% 80% at 18% 30%, rgba(40, 14, 58, .5), transparent 75%); }
+.hero-mist { position: absolute; z-index: 1; left: 0; right: 0; bottom: -40px; height: 170px; pointer-events: none;
+  background:
+    radial-gradient(28% 70% at 12% 85%, rgba(236, 210, 250, .95), transparent 72%),
+    radial-gradient(26% 60% at 40% 95%, rgba(244, 224, 252, .95), transparent 72%),
+    radial-gradient(30% 70% at 70% 92%, rgba(232, 200, 248, .9), transparent 72%),
+    radial-gradient(26% 70% at 95% 85%, rgba(226, 196, 246, .95), transparent 72%),
+    linear-gradient(180deg, transparent 30%, rgba(236, 212, 248, .85) 75%, #efd6f6 100%);
+  filter: blur(6px); }
+.hero-clouds { -webkit-mask-image: none; mask-image: none; object-fit: contain; height: auto; width: 100%; left: 0; bottom: -40px; transform: translateX(calc(var(--px) * 8px)); z-index: 2; opacity: .95; }
+.dir-section { padding-top: 40px; }
+
+/* Why: no giant corner crystals; soft cloud corners; arc + bigger ornament */
+.why-clouds { display: none; }
+.why-cloud { position: absolute; z-index: 0; top: -70px; width: 34%; height: 190px; pointer-events: none; filter: blur(10px);
+  background:
+    radial-gradient(40% 50% at 30% 60%, rgba(110, 60, 150, .95), transparent 70%),
+    radial-gradient(35% 45% at 60% 45%, rgba(140, 85, 180, .9), transparent 70%),
+    radial-gradient(45% 55% at 15% 30%, rgba(90, 45, 125, .95), transparent 70%); }
+.why-cloud.l { left: -6%; }
+.why-cloud.r { right: -6%; transform: scaleX(-1); }
+.why-crystal { position: absolute; z-index: 1; left: 3%; top: 40px; width: 60px; --r: -12deg; filter: drop-shadow(0 0 18px rgba(220, 170, 255, .7)); }
+.why-section .ornament { margin: -74px auto 16px; }
+.why-section .ornament svg { width: min(560px, 90%); }
+.why-section h2 { font-weight: 500; }
+
+/* Footer: one rounded bar with a gold border all around */
+main:has(.home) + .site-footer { margin-top: -70px; }
+.footer-bar { margin: 0 12px 12px; padding: 20px 0; border-radius: 22px; border: 1px solid rgba(255, 216, 107, .55); border-top-color: rgba(255, 216, 107, .9);
+  background: linear-gradient(180deg, rgba(48, 20, 66, .97), rgba(28, 10, 40, .98));
+  box-shadow: 0 -2px 22px rgba(255, 216, 107, .35), 0 0 0 1px rgba(255, 255, 255, .03) inset; }
+@media (min-width: 1100px) { .footer-bar { margin: 0 22px 22px; } }
+.footer-row { gap: 14px 28px; }
+.footer-brand b { font-size: 25px; font-weight: 600; }
+.footer-docs { display: flex; gap: 14px; font-size: 11.5px; color: rgba(255, 255, 255, .45); align-self: flex-end; padding-bottom: 4px; }
+.footer-nav { margin-left: auto; }
+@media (max-width: 899px) {
+  .l-strand { display: none; }
+  .hero-mist { bottom: auto; top: 340px; height: 140px; }
+  .hero-clouds { top: 360px; bottom: auto; }
+  .why-cloud, .why-crystal { display: none; }
+  .footer-docs { width: 100%; }
+}
+/* v3.3 fixups */
+.hero-title { font-size: clamp(2.3rem, 3.9vw, 3.7rem); font-weight: 500; }
+.hero-content > .hero-title { max-width: 680px; }
+.dir-head h2 { font-size: clamp(1.7rem, 2.5vw, 2.3rem); font-weight: 500; }
+.why-section h2, .row-head h2 { font-size: clamp(1.7rem, 2.4vw, 2.2rem); font-weight: 500; }
+.hero-clouds { bottom: -200px; }
+.hero-mist { bottom: -70px; height: 190px; filter: blur(10px); }
+.dir-section { background: linear-gradient(180deg, #efd6f6 0, #f4e2f8 40%, #ead0f2 100%); padding-top: 70px; }
+.l-strand.left { left: 10%; }
+.l-ring .moon-img { filter: saturate(1.35) sepia(.15) brightness(1.04); }
+.why-section { overflow-x: clip; }
+.why-section .ornament svg { width: min(640px, 92%); }
+.why-cloud { top: -40px; height: 170px; }
+@media (max-width: 899px) { .hero-clouds { top: 300px; bottom: auto; } .dir-section { padding-top: 40px; } }
+.l-ring { top: -6px; width: min(104%, 780px); left: 55%; }
+.l-ring .moon-img { width: 64%; }
+@media (max-width: 899px) { .l-ring { top: 40px; width: 460px; } }
+@media (max-width: 899px) { .hero-mist, .hero-clouds { display: none; } .l-portrait img { -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent); mask-image: linear-gradient(180deg, #000 70%, transparent); } }

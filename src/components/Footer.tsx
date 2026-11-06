@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { SITE } from "@/lib/site";
 import { NAV } from "./Header";
 import Icon from "./Icon";
+import LogoStar from "./LogoStar";
 
 export default function Footer() {
   const path = usePathname();
@@ -18,12 +19,16 @@ export default function Footer() {
       <div className="footer-bar">
         <div className="container footer-row">
           <Link href="/" className="footer-brand" aria-label="На головну">
-            <img src="/assets/svg/brand/cosmic-star.svg" alt="" width={58} height={58} />
+            <LogoStar size={62} />
             <span>
               <b>{SITE.mentorName}</b>
               <small>{SITE.tagline}</small>
             </span>
           </Link>
+          <span className="footer-docs">
+            <Link href="/offer">Оферта</Link>
+            <Link href="/privacy">Конфіденційність</Link>
+          </span>
           <nav className="footer-nav" aria-label="Меню у футері">
             {NAV.map((n) => <Link key={n.href} href={n.href}>{n.label}</Link>)}
           </nav>
@@ -37,14 +42,6 @@ export default function Footer() {
               );
             })}
           </div>
-        </div>
-        <div className="container footer-legal">
-          <span>© {new Date().getFullYear()} {SITE.mentorName}. Сайт не є офіційним сайтом GaliantPro. Результат навчання залежить від особистих зусиль.</span>
-          <span className="footer-docs">
-            <Link href="/offer">Оферта</Link>
-            <Link href="/privacy">Конфіденційність</Link>
-            <a href={SITE.trialUrl} target="_blank" rel="noopener">Пробні уроки</a>
-          </span>
         </div>
       </div>
     </footer>
