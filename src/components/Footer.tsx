@@ -15,10 +15,10 @@ export default function Footer() {
   ].filter((s) => s.href);
   return (
     <footer className="site-footer">
-      <div className="container">
-        <div className="footer-bar">
+      <div className="footer-bar">
+        <div className="container footer-row">
           <Link href="/" className="footer-brand" aria-label="На головну">
-            <img src="/assets/svg/brand/cosmic-star.svg" alt="" width={46} height={46} />
+            <img src="/assets/svg/brand/cosmic-star.svg" alt="" width={58} height={58} />
             <span>
               <b>{SITE.mentorName}</b>
               <small>{SITE.tagline}</small>
@@ -38,7 +38,7 @@ export default function Footer() {
             })}
           </div>
         </div>
-        <div className="footer-legal">
+        <div className="container footer-legal">
           <span>© {new Date().getFullYear()} {SITE.mentorName}. Сайт не є офіційним сайтом GaliantPro. Результат навчання залежить від особистих зусиль.</span>
           <span className="footer-docs">
             <Link href="/offer">Оферта</Link>

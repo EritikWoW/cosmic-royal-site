@@ -56,7 +56,7 @@ export default async function Home() {
             Твоя нова професія починається{" "}
             <span className="swoosh">
               тут
-              <svg viewBox="0 0 200 70" aria-hidden><path d="M6 46 C 50 66, 150 64, 192 26 C 196 14, 170 4, 120 8" /></svg>
+              <svg viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden><path d="M8 66 C 30 98, 168 100, 194 62 C 214 30, 172 4, 98 8" /></svg>
             </span>
           </h1>
           <p className="hero-sub hero-in" style={{ ["--d" as string]: ".4s" }}>
@@ -112,8 +112,7 @@ export default async function Home() {
 
       {/* WHY: dark dome with gold arc */}
       <section className="why-section">
-        <img src="/assets/png/decor/amethyst-cluster.png" alt="" aria-hidden className="side-crystal left float" />
-        <img src="/assets/png/decor/amethyst-single.png" alt="" aria-hidden className="side-crystal right float" />
+        <img src="/assets/v3/cloud-band.webp" alt="" aria-hidden className="why-clouds" />
         <div className="container">
           <Ornament />
           <h2 className="center reveal">Чому обирають навчання тут?</h2>

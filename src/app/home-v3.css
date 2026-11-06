@@ -302,3 +302,68 @@ main:not(:has(.home)) + .site-footer { margin-top: 70px; }
 .dir-section { padding-top: 50px; }
 .hero::before { -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent); mask-image: linear-gradient(180deg, #000 70%, transparent); }
 @media (max-width: 899px) { .dir-section { padding-top: 40px; margin-top: -60px; background: linear-gradient(180deg, rgba(240,214,248,0) 0, #efd6f6 90px, #f4e2f8 40%, #ead0f2 100%); } .hero { padding-bottom: 90px; } }
+
+/* ===== v3.2: pairs from Roman's comparison ===== */
+/* Hero: glowing moon disc inside the ring, bigger portrait lower in the ring, wider arch */
+.l-ring { top: 0; width: min(98%, 700px); }
+.l-ring::before { content: ""; position: absolute; z-index: -1; left: 50%; top: 50%; width: 62%; aspect-ratio: 1; border-radius: 50%; transform: translate(-50%, -50%);
+  background:
+    radial-gradient(circle at 30% 34%, rgba(255,255,255,.22) 0 5%, transparent 6%),
+    radial-gradient(circle at 62% 28%, rgba(160,100,150,.18) 0 7%, transparent 8%),
+    radial-gradient(circle at 70% 64%, rgba(160,100,150,.2) 0 9%, transparent 10%),
+    radial-gradient(circle at 38% 70%, rgba(160,100,150,.16) 0 6%, transparent 7%),
+    radial-gradient(circle at 42% 40%, #fff1e2 0%, #f6cfd8 30%, #d79fcf 58%, #9b5eb8 82%, rgba(120,60,170,.0) 100%);
+  box-shadow: 0 0 60px 18px rgba(255, 190, 220, .35), 0 0 140px 40px rgba(200, 130, 240, .25); opacity: .92; }
+.hero-stage { bottom: -40px; overflow: hidden; }
+.l-portrait { bottom: -30px; height: min(100%, 640px); left: 54%; }
+.l-portrait img { -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent); mask-image: linear-gradient(180deg, #000 82%, transparent); }
+.l-arch { top: 30px; width: min(130%, 960px); left: 55%; }
+.l-crystal { bottom: 70px; }
+
+/* Title: denser like the mockup, "тут" inside a lime loop */
+.hero-title { font-weight: 700; letter-spacing: -.02em; background: linear-gradient(180deg, #fbeafc 0%, #f1cff3 70%, #e2b4ec 100%); -webkit-background-clip: text; background-clip: text; }
+.swoosh { padding: 0 .12em; }
+.swoosh svg { left: -14%; top: -2%; bottom: auto; width: 128%; height: 112%; }
+.swoosh path { stroke-width: 2.6; stroke-dasharray: 520; stroke-dashoffset: 520; }
+
+/* Why: wider, flatter dome; clouds + crystals fill the top corners; bigger icons */
+.why-section { border-radius: 50% 50% 0 0 / 150px 150px 0 0; padding: 86px 0 64px; margin-top: -110px;
+  background: radial-gradient(80% 120% at 50% 0%, #573070, #3d2052 50%, #2c1442 100%); }
+.why-section::after { content: ""; position: absolute; left: 8%; right: 8%; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,216,107,.55), transparent); }
+.why-clouds { position: absolute; z-index: 0; left: 0; top: -150px; width: 100%; height: 260px; object-fit: cover; object-position: 50% 100%; pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, #000 0 20%, transparent 34% 66%, #000 80% 100%); mask-image: linear-gradient(90deg, #000 0 20%, transparent 34% 66%, #000 80% 100%); }
+.why-section .container { position: relative; z-index: 1; }
+.why-section .ornament { margin: -66px auto 14px; }
+.why-section .ornament svg { width: 360px; }
+.why-section h2 { font-weight: 700; font-size: clamp(2rem, 3vw, 2.7rem); }
+.why-icon { width: 64px; height: 64px; border-radius: 18px; color: #ffdf9a; background: linear-gradient(160deg, rgba(255,255,255,.14), rgba(255,255,255,.03)); }
+.why-icon svg { width: 32px; height: 32px; }
+.why b { font-size: 15px; font-weight: 700; }
+.why small { font-size: 13px; color: rgba(255,255,255,.72); }
+.side-crystal { z-index: 1; }
+.side-crystal.left { width: 170px; left: -20px; top: -40px; }
+.side-crystal.right { width: 80px; right: 30px; top: -10px; }
+
+/* Footer: full-width bar inside the frame, gold glow on top */
+.site-footer { padding: 0; }
+main:has(.home) + .site-footer { margin-top: -40px; }
+.footer-bar { border-radius: 0 0 26px 26px; padding: 26px 0 16px; border: 0; border-top: 1px solid rgba(255, 216, 107, .7);
+  background: linear-gradient(180deg, rgba(46, 18, 64, .96), rgba(26, 9, 38, .98));
+  box-shadow: 0 -2px 24px rgba(255, 216, 107, .35), 0 -40px 80px rgba(160, 90, 220, .15); }
+@media (min-width: 1100px) { .footer-bar { margin: 0 10px 10px; } }
+.footer-row { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 32px; }
+.footer-brand img { width: 58px; height: 58px; }
+.footer-brand b { font-size: 24px; }
+.footer-brand small { font-size: 13.5px; }
+.footer-socials a svg { width: 24px; height: 24px; }
+.footer-legal { padding-top: 16px; margin-top: 16px; border-top: 1px solid rgba(255,255,255,.07); font-size: 11.5px; }
+@media (max-width: 899px) { .footer-bar { border-radius: 0; } .why-section { border-radius: 50% 50% 0 0 / 50px 50px 0 0; margin-top: -70px; padding-top: 60px; } .why-clouds { display: none; } .why-section .ornament { margin-top: -40px; } }
+.why-clouds { top: -70px; height: 190px; -webkit-mask-image: linear-gradient(90deg, #000 0 14%, transparent 26% 74%, #000 86% 100%); mask-image: linear-gradient(90deg, #000 0 14%, transparent 26% 74%, #000 86% 100%); }
+.swoosh svg { left: -7%; width: 116%; }
+.l-arch { width: min(120%, 880px); left: 56%; top: 40px; }
+.why-clouds { height: 280px;
+  -webkit-mask-image: linear-gradient(90deg, #000 0 14%, transparent 26% 74%, #000 86% 100%), linear-gradient(180deg, #000 60%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(90deg, #000 0 14%, transparent 26% 74%, #000 86% 100%), linear-gradient(180deg, #000 60%, transparent 100%);
+  mask-composite: intersect; }
+.footer-bar { border-top: 1.5px solid rgba(255, 216, 107, .9); box-shadow: 0 -3px 18px rgba(255, 216, 107, .45), 0 -40px 80px rgba(160, 90, 220, .15); }
