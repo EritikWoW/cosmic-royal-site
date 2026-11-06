@@ -10,6 +10,7 @@ const NAV = [
   { href: "/admin/orders", icon: "orders", label: "Замовлення" },
   { href: "/admin/courses", icon: "graduation", label: "Курси" },
   { href: "/admin/support", icon: "chat", label: "Звернення" },
+  { href: "/admin/reviews", icon: "heart", label: "Відгуки" },
   { href: "/admin/users", icon: "user", label: "Користувачі" },
   { href: "/", icon: "globe", label: "На сайт" },
 ];

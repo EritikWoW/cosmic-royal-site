@@ -130,3 +130,16 @@ model AuditLog {
   data      Json?
   createdAt DateTime @default(now())
 }
+
+/// Real student reviews, added by the admin. The section stays hidden while empty.
+model Review {
+  id        String   @id @default(cuid())
+  name      String
+  text      String
+  rating    Int      @default(5)
+  /// Optional photo URL (with the student's consent)
+  photo     String?
+  published Boolean  @default(true)
+  sortOrder Int      @default(100)
+  createdAt DateTime @default(now())
+}

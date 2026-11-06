@@ -8,22 +8,25 @@ export type CourseLite = { id: string; slug: string; title: string; short: strin
 export default function CourseCard({ c, i = 0 }: { c: CourseLite; i?: number }) {
   const cart = useCart();
   const inCart = cart.has(c.id);
+  const toggle = () => (inCart ? cart.remove(c.id) : cart.add({ id: c.id, slug: c.slug, title: c.title, price: c.price, cover: c.cover }));
   return (
-    <article className="card card-glow course-card reveal" style={{ ["--d" as string]: `${(i % 3) * 0.08}s` }}>
-      <Link href={`/courses/${c.slug}`} className="course-cover" tabIndex={-1} aria-hidden>
-        <img src={c.cover} alt="" loading="lazy" />
-        <span className={`badge ${c.kind === "level" ? "badge-gold" : ""}`}>{c.kind === "level" ? "Рівень" : c.directionTitle}</span>
-        {c.featured && <span className="badge badge-gold hot">★ Популярне</span>}
-      </Link>
+    <article className="glass card-glow course-card reveal" style={{ ["--d" as string]: `${(i % 3) * 0.08}s` }}>
+      <div className="course-cover">
+        <Link href={`/courses/${c.slug}`} tabIndex={-1} aria-hidden><img src={c.cover} alt="" loading="lazy" /></Link>
+        <span className="badge">{c.kind === "level" ? "Рівень" : "Курс"}</span>
+        <button className={`cart-heart ${inCart ? "on" : ""}`} onClick={toggle} aria-label={inCart ? "Прибрати з кошика" : "Додати до кошика"} title={inCart ? "У кошику" : "До кошика"}>
+          <img src="/assets/svg/system/cart.svg" alt="" />
+        </button>
+      </div>
       <div className="course-body">
         <h3><Link href={`/courses/${c.slug}`}>{c.title}</Link></h3>
-        <p className="muted">{c.short}</p>
-        {c.lessons ? <p className="meta"><img src="/assets/svg/system/play.svg" alt="" /> {c.lessons} уроків</p> : null}
+        <p>{c.short}</p>
+        <div className="meta">
+          <span><img src="/assets/svg/system/play.svg" alt="" /> {c.lessons ? `${c.lessons} уроків` : c.directionTitle}</span>
+        </div>
         <div className="course-foot">
-          <b className="price gold-text">{formatUAH(c.price)}</b>
-          <button className={`btn btn-sm ${inCart ? "btn-secondary" : "btn-primary"}`} onClick={() => (inCart ? cart.remove(c.id) : cart.add({ id: c.id, slug: c.slug, title: c.title, price: c.price, cover: c.cover }))}>
-            {inCart ? "У кошику ✓" : "До кошика"}
-          </button>
+          <b className="price">{formatUAH(c.price)}</b>
+          <Link href={`/courses/${c.slug}`} className="btn btn-primary btn-sm">Детальніше →</Link>
         </div>
       </div>
     </article>

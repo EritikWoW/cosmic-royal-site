@@ -83,3 +83,26 @@ export async function setRole(fd: FormData) {
   await audit(actor, "role_changed", { id, role });
   revalidatePath("/admin/users");
 }
+
+export async function saveReview(fd: FormData) {
+  const actor = await admin();
+  const s = (k: string) => String(fd.get(k) || "").trim();
+  const data = { name: s("name"), text: s("text"), rating: Math.min(5, Math.max(1, Number(s("rating")) || 5)), photo: s("photo") || null, published: true };
+  if (!data.name || !data.text) throw new Error("Ім'я і текст обов'язкові");
+  const r = await db.review.create({ data });
+  await audit(actor, "review_created", { id: r.id });
+  revalidatePath("/", "layout");
+}
+
+export async function toggleReview(fd: FormData) {
+  const actor = await admin();
+  const id = String(fd.get("id"));
+  const del = fd.get("delete") === "1";
+  if (del) await db.review.delete({ where: { id } });
+  else {
+    const r = await db.review.findUniqueOrThrow({ where: { id } });
+    await db.review.update({ where: { id }, data: { published: !r.published } });
+  }
+  await audit(actor, del ? "review_deleted" : "review_toggled", { id });
+  revalidatePath("/", "layout");
+}

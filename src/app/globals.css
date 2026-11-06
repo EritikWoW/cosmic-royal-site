@@ -30,7 +30,14 @@
 html { scroll-behavior: smooth; }
 html, body { margin: 0; padding: 0; overflow-x: hidden; }
 body {
-  background: var(--cosmic-black);
+  background:
+    radial-gradient(1200px 700px at 85% 10%, rgba(106,43,217,.28), transparent 60%),
+    radial-gradient(900px 600px at 0% 45%, rgba(163,112,255,.16), transparent 60%),
+    radial-gradient(1000px 700px at 100% 85%, rgba(106,43,217,.22), transparent 60%),
+    
+    linear-gradient(180deg, #1a0b2c 0%, #150823 40%, #1b0a2e 100%);
+  background-color: #170926;
+  background-attachment: fixed;
   color: var(--starlight);
   font: 400 16px/1.65 var(--font-ui);
   -webkit-font-smoothing: antialiased;
@@ -42,6 +49,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
 
 h1, h2, h3, .display {
   font-family: var(--font-display);
+  color: #f6eaff;
   font-weight: 600;
   line-height: 1.04;
   letter-spacing: -0.02em;
@@ -52,7 +60,7 @@ h2 { font-size: clamp(2rem, 3.5vw, 3.25rem); }
 h3 { font-size: clamp(1.35rem, 2vw, 1.6rem); }
 p { margin: 0; }
 
-.gold-text {
+.gold-text, h1 .gold-text, h2 .gold-text {
   background: var(--gradient-gold);
   -webkit-background-clip: text;
   background-clip: text;

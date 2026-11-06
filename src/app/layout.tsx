@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 import "./ui.css";
+import "./home.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Starfield from "@/components/Starfield";
