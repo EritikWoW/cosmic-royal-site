@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Icon from "./Icon";
 import { useState } from "react";
 import { useCart } from "./Cart";
 import { formatUAH, SITE } from "@/lib/site";
@@ -30,7 +31,7 @@ export default function CartView({ user }: Props) {
         <img src="/assets/svg/system/cart.svg" alt="" width={56} />
         <h3>Кошик порожній</h3>
         <p className="muted">Обери курс або рівень у каталозі.</p>
-        <Link href="/courses" className="btn btn-primary">До каталогу →</Link>
+        <Link href="/courses" className="btn btn-primary">До каталогу <Icon name="arrow" size={16} /></Link>
       </div>
     );
 

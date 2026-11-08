@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Icon from "./Icon";
 import { useCart } from "./Cart";
 import { formatUAH } from "@/lib/site";
 
@@ -26,7 +27,7 @@ export default function CourseCard({ c, i = 0 }: { c: CourseLite; i?: number }) 
         </div>
         <div className="course-foot">
           <b className="price">{formatUAH(c.price)}</b>
-          <Link href={`/courses/${c.slug}`} className="btn btn-primary btn-sm">Детальніше →</Link>
+          <Link href={`/courses/${c.slug}`} className="btn btn-primary btn-sm">Детальніше <Icon name="arrow" size={16} /></Link>
         </div>
       </div>
     </article>

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Manrope, Noto_Serif_Display } from "next/font/google";
+import "./tokens.css";
 import "./globals.css";
 import "./ui.css";
 import "./home.css";
@@ -29,7 +30,8 @@ export const viewport: Viewport = { themeColor: "#0b0614" };
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const user = await getUser();
   return (
-    <html lang="uk" className={`${cormorant.variable} ${manrope.variable} ${serifDisplay.variable}`}>
+    <html lang="uk" className={`${cormorant.variable} ${manrope.variable} ${serifDisplay.variable}`} suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} /></head>
       <body>
         <CartProvider>
           <Starfield />

@@ -1,7 +1,8 @@
 "use client";
 import { useEffect } from "react";
 
-/** Writes pointer position (-1..1) into --px/--py on every [data-parallax] element. */
+/** Writes pointer position (-1..1) into --px/--py on every [data-parallax] element,
+ *  and the local pointer position into --mx/--my on the hovered card (soft spotlight). */
 export default function Parallax() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -19,6 +20,12 @@ export default function Parallax() {
       tx = (e.clientX / window.innerWidth) * 2 - 1;
       ty = (e.clientY / window.innerHeight) * 2 - 1;
       if (!raf) raf = requestAnimationFrame(tick);
+      const card = (e.target as HTMLElement | null)?.closest?.<HTMLElement>(".dir-card, .ai-card, .why li");
+      if (card) {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", `${e.clientX - r.left}px`);
+        card.style.setProperty("--my", `${e.clientY - r.top}px`);
+      }
     };
     window.addEventListener("pointermove", move, { passive: true });
     return () => { window.removeEventListener("pointermove", move); cancelAnimationFrame(raf); };
